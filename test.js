@@ -12,7 +12,7 @@ test('responds to requests', (t) => {
   // Wait until the server is ready
   child.stdout.on('data', _ => {
     // Make a request to our app
-    request('http://127.0.0.1:5000', (error, response, body) => {
+    request('http://127.0.0.1:5000', (error, response) => {
       // stop the server
       child.kill();
 
@@ -20,9 +20,6 @@ test('responds to requests', (t) => {
       t.false(error);
       // Successful response
       t.equal(response.statusCode, 200);
-      // Assert content checks
-      t.notEqual(body.indexOf("<title>Node.js Getting Started on Heroku</title>"), -1);
-      t.notEqual(body.indexOf("Getting Started with Node on Heroku"), -1);
     });
   });
 });
